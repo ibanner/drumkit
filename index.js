@@ -35,14 +35,23 @@ function playDrum(key) {
   }
 }
 
+function buttonAnimation(key) {
+  var activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
+
 for (var i = 0; i < drums.length; i++) {
   drums[i].addEventListener("click", function() {
-    this.style.color = "#fff";
     var btnKey = this.innerText;
     playDrum(btnKey);
+    buttonAnimation(btnKey);
   });
 }
 
-document.addEventListener("keydown",function(e) {
+document.addEventListener("keydown", function(e) {
   playDrum(e.key);
+  buttonAnimation(e.key);
 });
